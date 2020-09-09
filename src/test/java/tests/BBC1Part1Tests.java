@@ -48,7 +48,7 @@ public class BBC1Part1Tests extends BaseTest {
         getHomePage().searchByKeyword(searchQuery);
         getBasePage().implicitlyWait(20);
         String firstFoundArticleName = getSearchResultsPage().getFirstSearchResult();
-        Boolean found = Arrays.asList(firstFoundArticleName.split(" ")).contains(searchQuery);
+        boolean found = Arrays.asList(firstFoundArticleName.split(" ")).contains(searchQuery);
         Assert.assertTrue(found);
     }
 }
