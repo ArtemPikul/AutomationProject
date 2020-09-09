@@ -3,6 +3,8 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+
 public class BBC1Part1Tests extends BaseTest {
 
     private static final String EXPECTED_ARTICLE_HEADLINE = "Fire destroys Greece's largest migrant camp";
@@ -38,4 +40,15 @@ public class BBC1Part1Tests extends BaseTest {
         Assert.assertTrue(result);
     }
 
+    @Test
+    public void thirdTestTask() {
+        getHomePage().clickOnHeaderNewsLink();
+        getBasePage().implicitlyWait(20);
+        String searchQuery = getNewsPage().getHeadlineArticleCategoryText();
+        getHomePage().searchByKeyword(searchQuery);
+        getBasePage().implicitlyWait(20);
+        String firstFoundArticleName = getSearchResultsPage().getFirstSearchResult();
+        Boolean found = Arrays.asList(firstFoundArticleName.split(" ")).contains(searchQuery);
+        Assert.assertTrue(found);
+    }
 }

@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeTest;
 import pages.BasePage;
 import pages.HomePage;
 import pages.NewsPage;
+import pages.SearchResultsPage;
 
 public class BaseTest {
 
@@ -38,6 +39,8 @@ public class BaseTest {
         return new NewsPage(chromeDriver);
     }
 
-
+    public SearchResultsPage getSearchResultsPage() {
+        return new SearchResultsPage(chromeDriver);
+    }
 
 }

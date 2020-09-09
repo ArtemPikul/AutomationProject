@@ -14,6 +14,9 @@ public class NewsPage extends BasePage {
     @FindBy(xpath = "//h3[@class='gs-c-promo-heading__title gel-pica-bold nw-o-link-split__text']")
     private List<WebElement> secondaryArticleHeadlinesList;
 
+    @FindBy(xpath = "//a[@aria-label='From Europe']")
+    private List<WebElement> categoryList;
+
     public NewsPage(WebDriver driver) {
         super(driver);
     }
@@ -24,5 +27,9 @@ public class NewsPage extends BasePage {
 
     public List<WebElement> getSecondaryArticleHeadlinesLIst() {
         return secondaryArticleHeadlinesList;
+    }
+
+    public String getHeadlineArticleCategoryText() {
+        return categoryList.get(0).getText();
     }
 }
