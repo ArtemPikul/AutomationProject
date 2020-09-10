@@ -4,27 +4,24 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
-import pages.BasePage;
-import pages.HomePage;
-import pages.NewsPage;
-import pages.SearchResultsPage;
+import pages.*;
 
-public class BaseTest {
+public abstract class BaseTest {
 
-    private WebDriver chromeDriver;
+    protected WebDriver chromeDriver;
 
     private static final String BBC_URL = "https://www.bbc.com";
 
     @BeforeTest
     public void checkSetUp() {
-        System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src\\test\\java\\resources\\chromedriver.exe");
         chromeDriver = new ChromeDriver();
         chromeDriver.get(BBC_URL);
     }
 
     @AfterMethod
     public void tearDown() {
-        chromeDriver.close();
+        chromeDriver.quit();
     }
 
     public BasePage getBasePage() {
@@ -41,6 +38,10 @@ public class BaseTest {
 
     public SearchResultsPage getSearchResultsPage() {
         return new SearchResultsPage(chromeDriver);
+    }
+
+    public CoronavirusPage getCoronavirusPage() {
+        return new CoronavirusPage(chromeDriver);
     }
 
 }

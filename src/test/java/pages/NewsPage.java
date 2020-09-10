@@ -17,8 +17,34 @@ public class NewsPage extends BasePage {
     @FindBy(xpath = "//a[@aria-label='From Europe']")
     private List<WebElement> categoryList;
 
+    @FindBy(xpath="//a[@class='nw-o-link']/span[contains(text(), 'Coronavirus')]")
+    private List<WebElement> coronavirusTabLink;
+
+    @FindBy(xpath = "//div[@class='sign_in-container']")
+    private WebElement signInPopUp;
+
+    @FindBy(xpath = "//button[contains(text(), 'Maybe later')]")
+    private WebElement signInPopupMaybeLater;
+
     public NewsPage(WebDriver driver) {
         super(driver);
+    }
+
+    public String getHeadlineArticleCategoryText() {
+        return categoryList.get(0).getText();
+    }
+
+    public void clickOnCoronavirusTabLink() {
+        coronavirusTabLink.get(0).click();
+    }
+
+    public NewsPage clickOnMaybeLaterOptionInSignInPopup() {
+        signInPopupMaybeLater.click();
+        return this;
+    }
+
+    public WebElement getCoronavirusTabLink() {
+        return coronavirusTabLink.get(0);
     }
 
     public String getExpectedArticleHeadlineText() {
@@ -29,7 +55,7 @@ public class NewsPage extends BasePage {
         return secondaryArticleHeadlinesList;
     }
 
-    public String getHeadlineArticleCategoryText() {
-        return categoryList.get(0).getText();
+    public WebElement getSignInPopUp() {
+        return signInPopUp;
     }
 }

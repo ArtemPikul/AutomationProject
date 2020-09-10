@@ -26,4 +26,8 @@ public class HomePage extends BasePage {
         searchField.sendKeys(keyword, Keys.ENTER);
     }
 
+    public WebElement getNewsLink() {
+        return newsLink;
+    }
+
 }

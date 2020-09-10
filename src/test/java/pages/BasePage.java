@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -23,6 +24,15 @@ public class BasePage {
 
     public void implicitlyWait(long timeout) {
         driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+    }
+
+    public void waitForPageReadyState(long timeout) {
+        new WebDriverWait(driver, timeout).until(
+                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+    }
+
+    public String getCurrentPageURL() {
+        return driver.getCurrentUrl();
     }
 
 }
