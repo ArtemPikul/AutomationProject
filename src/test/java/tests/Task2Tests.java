@@ -13,11 +13,11 @@ public class Task2Tests extends BaseTest {
 
     private static final String PAGE_URL_FOR_ASSERT = "https://www.bbc.com/news/10725415";
 
-    @Test
+    @Test(invocationCount = 10)
     public void checkThatUserCannotSubmitQuestionIfOneOfTheFieldsHasInvalidData() {
-        String currentURL = getHomePage().clickOnHeaderNewsLink()
+        String currentURL = homePage.clickOnHeaderNewsLink()
                 .waitForPageReadyState(15)
-                .waitForElementVisibility(15, getNewsPage().getSignInPopUp())
+                .waitForElementVisibility(15, newsPage.getSignInPopUp())
                 .clickOnMaybeLaterOptionInSignInPopup()
                 .clickOnCoronavirusTabLink()
                 .waitForPageReadyState(15)
@@ -35,13 +35,14 @@ public class Task2Tests extends BaseTest {
                 .clickSubmitButton()
                 .getCurrentPageURL();
         Assert.assertEquals(currentURL, PAGE_URL_FOR_ASSERT);
+        Assert.assertTrue(shareYourStoryPage.getSubmitButtonState());
     }
 
     @Test
     public void checkThatUserCannotSubmitQuestionIfUnder16IsNotChecked() {
-        String currentURL = getHomePage().clickOnHeaderNewsLink()
+        String currentURL = homePage.clickOnHeaderNewsLink()
                 .waitForPageReadyState(15)
-                .waitForElementVisibility(15, getNewsPage().getSignInPopUp())
+                .waitForElementVisibility(15, newsPage.getSignInPopUp())
                 .clickOnMaybeLaterOptionInSignInPopup()
                 .clickOnCoronavirusTabLink()
                 .waitForPageReadyState(15)
@@ -58,13 +59,14 @@ public class Task2Tests extends BaseTest {
                 .clickSubmitButton()
                 .getCurrentPageURL();
         Assert.assertEquals(currentURL, PAGE_URL_FOR_ASSERT);
+        Assert.assertTrue(shareYourStoryPage.getSubmitButtonState());
     }
 
     @Test
     public void checkThatUserCannotSubmitQuestionIfTermsOfServiceIsNotChecked() {
-        String currentURL = getHomePage().clickOnHeaderNewsLink()
+        String currentURL = homePage.clickOnHeaderNewsLink()
                 .waitForPageReadyState(15)
-                .waitForElementVisibility(15, getNewsPage().getSignInPopUp())
+                .waitForElementVisibility(15, newsPage.getSignInPopUp())
                 .clickOnMaybeLaterOptionInSignInPopup()
                 .clickOnCoronavirusTabLink()
                 .waitForPageReadyState(15)
@@ -81,5 +83,6 @@ public class Task2Tests extends BaseTest {
                 .clickSubmitButton()
                 .getCurrentPageURL();
         Assert.assertEquals(currentURL, PAGE_URL_FOR_ASSERT);
+        Assert.assertTrue(shareYourStoryPage.getSubmitButtonState());
     }
 }

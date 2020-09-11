@@ -82,5 +82,9 @@ public class ShareYourStoryPage extends BasePage {
         return this;
     }
 
+    public boolean getSubmitButtonState() {
+        return submitButton.isEnabled();
+    }
+
 
 }
