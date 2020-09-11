@@ -18,8 +18,9 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-    public void clickOnHeaderNewsLink() {
+    public NewsPage clickOnHeaderNewsLink() {
         newsLink.click();
+        return new NewsPage(driver);
     }
 
     public void searchByKeyword(String keyword) {

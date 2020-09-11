@@ -1,8 +1,11 @@
 package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -34,8 +37,9 @@ public class NewsPage extends BasePage {
         return categoryList.get(0).getText();
     }
 
-    public void clickOnCoronavirusTabLink() {
+    public CoronavirusPage clickOnCoronavirusTabLink() {
         coronavirusTabLink.get(0).click();
+        return new CoronavirusPage(driver);
     }
 
     public NewsPage clickOnMaybeLaterOptionInSignInPopup() {
@@ -57,5 +61,17 @@ public class NewsPage extends BasePage {
 
     public WebElement getSignInPopUp() {
         return signInPopUp;
+    }
+
+    public NewsPage waitForPageReadyState(long timeout) {
+        new WebDriverWait(driver, timeout).until(
+                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+        return this;
+    }
+
+    public NewsPage waitForElementVisibility(long timeout, WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, timeout);
+        wait.until(ExpectedConditions.visibilityOf(element));
+        return this;
     }
 }

@@ -17,18 +17,20 @@ public class BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void waitForElementVisibility(long timeout, WebElement element) {
+    public BasePage waitForElementVisibility(long timeout, WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, timeout);
         wait.until(ExpectedConditions.visibilityOf(element));
+        return this;
     }
 
     public void implicitlyWait(long timeout) {
         driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
     }
 
-    public void waitForPageReadyState(long timeout) {
+    public BasePage waitForPageReadyState(long timeout) {
         new WebDriverWait(driver, timeout).until(
                 webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+        return this;
     }
 
     public String getCurrentPageURL() {

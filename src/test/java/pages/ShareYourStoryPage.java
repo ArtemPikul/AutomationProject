@@ -1,8 +1,10 @@
 package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ShareYourStoryPage extends BasePage {
 
@@ -69,4 +71,12 @@ public class ShareYourStoryPage extends BasePage {
         submitButton.click();
         return this;
     }
+
+    public ShareYourStoryPage waitForPageReadyState(long timeout) {
+        new WebDriverWait(driver, timeout).until(
+                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+        return this;
+    }
+
+
 }

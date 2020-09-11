@@ -21,7 +21,7 @@ public abstract class BaseTest {
 
     @AfterMethod
     public void tearDown() {
-        chromeDriver.quit();
+        chromeDriver.close();
     }
 
     public BasePage getBasePage() {
@@ -40,8 +40,5 @@ public abstract class BaseTest {
         return new SearchResultsPage(chromeDriver);
     }
 
-    public CoronavirusPage getCoronavirusPage() {
-        return new CoronavirusPage(chromeDriver);
-    }
 
 }

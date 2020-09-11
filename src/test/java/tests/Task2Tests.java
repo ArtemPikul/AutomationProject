@@ -1,5 +1,6 @@
 package tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Task2Tests extends BaseTest {
@@ -10,23 +11,29 @@ public class Task2Tests extends BaseTest {
     private static final String CONTACT_NUMBER = "+380112223344";
     private static final String LOCATION = "Kyiv";
 
+    private static final String PAGE_URL_FOR_ASSERT = "https://www.bbc.com/news/10725415";
+
     @Test
     public void checkThatUserCannotSubmitQuestionIfOneOfTheFieldsHasInvalidData() {
-        getHomePage().clickOnHeaderNewsLink();
-        getBasePage().waitForPageReadyState(15);
-        getBasePage().waitForElementVisibility(15, getNewsPage().getSignInPopUp());
-        getNewsPage().clickOnMaybeLaterOptionInSignInPopup()
-                .clickOnCoronavirusTabLink();
-        getBasePage().waitForPageReadyState(15);
-        getCoronavirusPage().clickOnYourCoronavirusStoriesLink()
+        String currentURL = getHomePage().clickOnHeaderNewsLink()
+                .waitForPageReadyState(15)
+                .waitForElementVisibility(15, getNewsPage().getSignInPopUp())
+                .clickOnMaybeLaterOptionInSignInPopup()
+                .clickOnCoronavirusTabLink()
+                .waitForPageReadyState(15)
+                .clickOnYourCoronavirusStoriesLink()
+                .waitForPageReadyState(15)
                 .clickOnShareWithBBCLink()
+                .waitForPageReadyState(15)
                 .fillInStoryTextArea(STORY_TEXT)
                 .fillInNameField(NAME)
                 .fillInEmailField(EMAIL)
                 .fillInContactNumberField(CONTACT_NUMBER)
                 .fillInLocationField(LOCATION)
                 .acceptNecessaryConditions()
-                .clickSubmitButton();
+                .clickSubmitButton()
+                .getCurrentPageURL();
+        Assert.assertEquals(currentURL, PAGE_URL_FOR_ASSERT);
     }
 
 }
