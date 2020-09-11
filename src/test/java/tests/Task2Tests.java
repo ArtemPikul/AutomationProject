@@ -30,10 +30,56 @@ public class Task2Tests extends BaseTest {
                 .fillInEmailField(EMAIL)
                 .fillInContactNumberField(CONTACT_NUMBER)
                 .fillInLocationField(LOCATION)
-                .acceptNecessaryConditions()
+                .acceptOver16YearsOldCondition()
+                .acceptTermsOfService()
                 .clickSubmitButton()
                 .getCurrentPageURL();
         Assert.assertEquals(currentURL, PAGE_URL_FOR_ASSERT);
     }
 
+    @Test
+    public void checkThatUserCannotSubmitQuestionIfUnder16IsNotChecked() {
+        String currentURL = getHomePage().clickOnHeaderNewsLink()
+                .waitForPageReadyState(15)
+                .waitForElementVisibility(15, getNewsPage().getSignInPopUp())
+                .clickOnMaybeLaterOptionInSignInPopup()
+                .clickOnCoronavirusTabLink()
+                .waitForPageReadyState(15)
+                .clickOnYourCoronavirusStoriesLink()
+                .waitForPageReadyState(15)
+                .clickOnShareWithBBCLink()
+                .waitForPageReadyState(15)
+                .fillInStoryTextArea(STORY_TEXT)
+                .fillInNameField(NAME)
+                .fillInEmailField("pikul.a@outlook.com")
+                .fillInContactNumberField(CONTACT_NUMBER)
+                .fillInLocationField(LOCATION)
+                .acceptTermsOfService()
+                .clickSubmitButton()
+                .getCurrentPageURL();
+        Assert.assertEquals(currentURL, PAGE_URL_FOR_ASSERT);
+    }
+
+    @Test
+    public void checkThatUserCannotSubmitQuestionIfTermsOfServiceIsNotChecked() {
+        String currentURL = getHomePage().clickOnHeaderNewsLink()
+                .waitForPageReadyState(15)
+                .waitForElementVisibility(15, getNewsPage().getSignInPopUp())
+                .clickOnMaybeLaterOptionInSignInPopup()
+                .clickOnCoronavirusTabLink()
+                .waitForPageReadyState(15)
+                .clickOnYourCoronavirusStoriesLink()
+                .waitForPageReadyState(15)
+                .clickOnShareWithBBCLink()
+                .waitForPageReadyState(15)
+                .fillInStoryTextArea(STORY_TEXT)
+                .fillInNameField(NAME)
+                .fillInEmailField("pikul.a@outlook.com")
+                .fillInContactNumberField(CONTACT_NUMBER)
+                .fillInLocationField(LOCATION)
+                .acceptOver16YearsOldCondition()
+                .clickSubmitButton()
+                .getCurrentPageURL();
+        Assert.assertEquals(currentURL, PAGE_URL_FOR_ASSERT);
+    }
 }

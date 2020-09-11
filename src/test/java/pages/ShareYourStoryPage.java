@@ -61,8 +61,12 @@ public class ShareYourStoryPage extends BasePage {
         return this;
     }
 
-    public ShareYourStoryPage acceptNecessaryConditions() {
+    public ShareYourStoryPage acceptOver16YearsOldCondition() {
         over16YearsCheckbox.click();
+        return this;
+    }
+
+    public ShareYourStoryPage acceptTermsOfService() {
         acceptTermsCheckbox.click();
         return this;
     }
