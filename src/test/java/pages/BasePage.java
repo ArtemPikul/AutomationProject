@@ -12,6 +12,8 @@ import java.util.concurrent.TimeUnit;
 public class BasePage {
     protected WebDriver driver;
 
+    protected static final long WAIT_TIMEOUT = 15;
+
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -36,5 +38,6 @@ public class BasePage {
     public String getCurrentPageURL() {
         return driver.getCurrentUrl();
     }
+
 
 }

@@ -22,11 +22,13 @@ public class CoronavirusPage extends BasePage {
 
     public CoronavirusPage clickOnYourCoronavirusStoriesLink() {
         yourCoronavirusStoriesLink.get(0).click();
+        waitForPageReadyState(WAIT_TIMEOUT);
         return this;
     }
 
     public ShareYourStoryPage clickOnShareWithBBCLink() {
         shareWithBBCLink.click();
+        waitForPageReadyState(WAIT_TIMEOUT);
         return new ShareYourStoryPage(driver);
     }
 

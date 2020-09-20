@@ -13,22 +13,29 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//input[@id='orb-search-q']")
     private WebElement searchField;
 
-    public HomePage(WebDriver driver)
-    {
+//    @FindBy(xpath = "//div[@class='sign_in-container']")
+//    private WebElement signInPopUp;
+
+    @FindBy(xpath = "//button[contains(text(), 'Maybe later')]")
+    private WebElement signInPopupMaybeLater;
+
+    public HomePage(WebDriver driver) {
         super(driver);
     }
 
     public NewsPage clickOnHeaderNewsLink() {
         newsLink.click();
-        return new NewsPage(driver);
+        waitForPageReadyState(WAIT_TIMEOUT);
+        try {
+            signInPopupMaybeLater.click();
+        } finally {
+            return new NewsPage(driver);
+        }
+
     }
 
     public void searchByKeyword(String keyword) {
         searchField.sendKeys(keyword, Keys.ENTER);
-    }
-
-    public WebElement getNewsLink() {
-        return newsLink;
     }
 
 }

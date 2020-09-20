@@ -24,7 +24,7 @@ public class ShareYourStoryPage extends BasePage {
     private WebElement yourLocationField;
 
     @FindBy(xpath = "//p[contains(text(), 'I am over 16 years old')]")
-    private WebElement over16YearsCheckbox;
+    private WebElement overSixteenYearsCheckbox;
 
     @FindBy(xpath = "//p[contains(text(), 'I accept the ')]")
     private WebElement acceptTermsCheckbox;
@@ -37,6 +37,7 @@ public class ShareYourStoryPage extends BasePage {
     }
 
     public ShareYourStoryPage fillInStoryTextArea(String story) {
+        waitForElementVisibility(WAIT_TIMEOUT, storyTextArea);
         storyTextArea.sendKeys(story);
         return this;
     }
@@ -61,8 +62,8 @@ public class ShareYourStoryPage extends BasePage {
         return this;
     }
 
-    public ShareYourStoryPage acceptOver16YearsOldCondition() {
-        over16YearsCheckbox.click();
+    public ShareYourStoryPage acceptOverSixteenYearsOldCondition() {
+        overSixteenYearsCheckbox.click();
         return this;
     }
 

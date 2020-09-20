@@ -20,14 +20,8 @@ public class NewsPage extends BasePage {
     @FindBy(xpath = "//a[@aria-label='From Europe']")
     private List<WebElement> categoryList;
 
-    @FindBy(xpath="//a[@class='nw-o-link']/span[contains(text(), 'Coronavirus')]")
+    @FindBy(xpath = "//a[@class='nw-o-link']/span[contains(text(), 'Coronavirus')]")
     private List<WebElement> coronavirusTabLink;
-
-    @FindBy(xpath = "//div[@class='sign_in-container']")
-    private WebElement signInPopUp;
-
-    @FindBy(xpath = "//button[contains(text(), 'Maybe later')]")
-    private WebElement signInPopupMaybeLater;
 
     public NewsPage(WebDriver driver) {
         super(driver);
@@ -39,13 +33,10 @@ public class NewsPage extends BasePage {
 
     public CoronavirusPage clickOnCoronavirusTabLink() {
         coronavirusTabLink.get(0).click();
+        waitForPageReadyState(WAIT_TIMEOUT);
         return new CoronavirusPage(driver);
     }
 
-    public NewsPage clickOnMaybeLaterOptionInSignInPopup() {
-        signInPopupMaybeLater.click();
-        return this;
-    }
 
     public WebElement getCoronavirusTabLink() {
         return coronavirusTabLink.get(0);
@@ -57,10 +48,6 @@ public class NewsPage extends BasePage {
 
     public List<WebElement> getSecondaryArticleHeadlinesLIst() {
         return secondaryArticleHeadlinesList;
-    }
-
-    public WebElement getSignInPopUp() {
-        return signInPopUp;
     }
 
     public NewsPage waitForPageReadyState(long timeout) {
