@@ -7,7 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverSingleton {
 
-    private static final String BROWSER_NAME = "chrome";
+    private static final String BROWSER_NAME = "firefox";
 
     private static WebDriver driver;
 
@@ -19,10 +19,12 @@ public class DriverSingleton {
                 case "firefox": {
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
+                    break;
                 }
                 case "chrome": {
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
+                    break;
                 }
             }
             driver.manage().window().maximize();
