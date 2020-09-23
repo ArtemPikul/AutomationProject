@@ -3,7 +3,6 @@ package tests;
 import BLL.LogicLayer;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.ShareYourStoryPage;
 
 import java.util.HashMap;
 
@@ -38,39 +37,37 @@ public class TaskTwoTests extends BaseTest {
 
     @Test
     public void checkThatUserCannotSubmitQuestionIfUnderSixteenIsNotChecked() {
-        String currentURL = homePage.clickOnHeaderNewsLink()
-                .clickOnCoronavirusTabLink()
-                .clickOnYourCoronavirusStoriesLink()
-                .clickOnShareWithBBCLink()
-                .fillInStoryTextArea(STORY_TEXT)
-                .fillInNameField(NAME)
-                .fillInEmailField("pikul.a@outlook.com")
-                .fillInContactNumberField(CONTACT_NUMBER)
-                .fillInLocationField(LOCATION)
-                .acceptTermsOfService()
-                .clickSubmitButton()
-                .getCurrentPageURL();
+        HashMap<String, String> map = new HashMap<>();
+        map.put("text", STORY_TEXT);
+        map.put("name", NAME);
+        map.put("number", CONTACT_NUMBER);
+        map.put("location", LOCATION);
+        map.put("email", "pikul.a@outlook.com");
+
+        LogicLayer.navigateToShareYourStoryPage();
+        LogicLayer.fillShareYourStoryForm(map);
+        LogicLayer.acceptTermsOfService();
+        String currentURL = LogicLayer.clickSubmitAndGetURL();
 
         Assert.assertEquals(currentURL, PAGE_URL_FOR_ASSERT);
-        Assert.assertTrue(shareYourStoryPage.getSubmitButtonState());
+        Assert.assertTrue(LogicLayer.getSubmitButtonState());
     }
 
     @Test
     public void checkThatUserCannotSubmitQuestionIfTermsOfServiceIsNotChecked() {
-        String currentURL = homePage.clickOnHeaderNewsLink()
-                .clickOnCoronavirusTabLink()
-                .clickOnYourCoronavirusStoriesLink()
-                .clickOnShareWithBBCLink()
-                .fillInStoryTextArea(STORY_TEXT)
-                .fillInNameField(NAME)
-                .fillInEmailField("pikul.a@outlook.com")
-                .fillInContactNumberField(CONTACT_NUMBER)
-                .fillInLocationField(LOCATION)
-                .acceptOverSixteenYearsOldCondition()
-                .clickSubmitButton()
-                .getCurrentPageURL();
+        HashMap<String, String> map = new HashMap<>();
+        map.put("text", STORY_TEXT);
+        map.put("name", NAME);
+        map.put("number", CONTACT_NUMBER);
+        map.put("location", LOCATION);
+        map.put("email", "pikul.a@outlook.com");
+
+        LogicLayer.navigateToShareYourStoryPage();
+        LogicLayer.fillShareYourStoryForm(map);
+        LogicLayer.acceptOverSixteenYearsOld();
+        String currentURL = LogicLayer.clickSubmitAndGetURL();
 
         Assert.assertEquals(currentURL, PAGE_URL_FOR_ASSERT);
-        Assert.assertTrue(shareYourStoryPage.getSubmitButtonState());
+        Assert.assertTrue(LogicLayer.getSubmitButtonState());
     }
 }

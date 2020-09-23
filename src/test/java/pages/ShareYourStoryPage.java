@@ -39,32 +39,6 @@ public class ShareYourStoryPage extends BasePage {
         super(driver);
     }
 
-    public ShareYourStoryPage fillInStoryTextArea(String story) {
-        waitForElementVisibility(WAIT_TIMEOUT, storyTextArea);
-        storyTextArea.sendKeys(story);
-        return this;
-    }
-
-    public ShareYourStoryPage fillInNameField(String name) {
-        yourNameField.sendKeys(name);
-        return this;
-    }
-
-    public ShareYourStoryPage fillInEmailField(String email) {
-        yourEmailField.sendKeys(email);
-        return this;
-    }
-
-    public ShareYourStoryPage fillInContactNumberField(String number) {
-        yourContactNumberField.sendKeys(number);
-        return this;
-    }
-
-    public ShareYourStoryPage fillInLocationField(String location) {
-        yourLocationField.sendKeys(location);
-        return this;
-    }
-
     public ShareYourStoryPage acceptOverSixteenYearsOldCondition() {
         overSixteenYearsCheckbox.click();
         return this;
