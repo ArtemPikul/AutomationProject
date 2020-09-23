@@ -13,9 +13,6 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//input[@id='orb-search-q']")
     private WebElement searchField;
 
-//    @FindBy(xpath = "//div[@class='sign_in-container']")
-//    private WebElement signInPopUp;
-
     @FindBy(xpath = "//button[contains(text(), 'Maybe later')]")
     private WebElement signInPopupMaybeLater;
 

@@ -19,14 +19,12 @@ public class TaskOneTests extends BaseTest {
     @Test
     public void firstTestTask() {
         getHomePage().clickOnHeaderNewsLink();
-        getBasePage().implicitlyWait(20);
         Assert.assertEquals(getNewsPage().getExpectedArticleHeadlineText(), EXPECTED_ARTICLE_HEADLINE);
     }
 
     @Test
     public void secondTestTask() {
         getHomePage().clickOnHeaderNewsLink();
-        getBasePage().implicitlyWait(30);
         boolean result = true;
         for (int i = 0; i < 4; i++) {
             String actualTitle = getNewsPage().getSecondaryArticleHeadlinesLIst().get(i).getText();
@@ -43,10 +41,8 @@ public class TaskOneTests extends BaseTest {
     @Test
     public void thirdTestTask() {
         getHomePage().clickOnHeaderNewsLink();
-        getBasePage().implicitlyWait(20);
         String searchQuery = getNewsPage().getHeadlineArticleCategoryText();
         getHomePage().searchByKeyword(searchQuery);
-        getBasePage().implicitlyWait(20);
         String firstFoundArticleName = getSearchResultsPage().getFirstSearchResult();
         boolean found = Arrays.asList(firstFoundArticleName.split(" ")).contains(searchQuery);
         Assert.assertTrue(found);

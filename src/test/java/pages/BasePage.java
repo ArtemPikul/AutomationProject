@@ -7,9 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.concurrent.TimeUnit;
-
-public class BasePage {
+public abstract class BasePage {
     protected WebDriver driver;
 
     protected static final long WAIT_TIMEOUT = 15;
@@ -23,10 +21,6 @@ public class BasePage {
         WebDriverWait wait = new WebDriverWait(driver, timeout);
         wait.until(ExpectedConditions.visibilityOf(element));
         return this;
-    }
-
-    public void implicitlyWait(long timeout) {
-        driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
     }
 
     public BasePage waitForPageReadyState(long timeout) {

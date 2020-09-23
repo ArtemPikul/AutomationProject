@@ -37,11 +37,6 @@ public class NewsPage extends BasePage {
         return new CoronavirusPage(driver);
     }
 
-
-    public WebElement getCoronavirusTabLink() {
-        return coronavirusTabLink.get(0);
-    }
-
     public String getExpectedArticleHeadlineText() {
         return articleHeadlineList.get(0).getText();
     }

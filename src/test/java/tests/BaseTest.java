@@ -2,10 +2,13 @@ package tests;
 
 import driver.DriverSingleton;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import pages.*;
+
+import java.util.HashMap;
 
 public abstract class BaseTest {
 
@@ -35,10 +38,6 @@ public abstract class BaseTest {
         driver.quit();
     }
 
-    public BasePage getBasePage() {
-        return new BasePage(driver);
-    }
-
     public HomePage getHomePage() {
         return new HomePage(driver);
     }
@@ -50,5 +49,7 @@ public abstract class BaseTest {
     public SearchResultsPage getSearchResultsPage() {
         return new SearchResultsPage(driver);
     }
+
+
 
 }

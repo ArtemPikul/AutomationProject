@@ -6,22 +6,25 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.HashMap;
+
 public class ShareYourStoryPage extends BasePage {
 
+
     @FindBy(xpath = "//textarea")
-    private WebElement storyTextArea;
+    private static WebElement storyTextArea;
 
     @FindBy(xpath = "//input[@aria-label='Name']")
-    private WebElement yourNameField;
+    private static WebElement yourNameField;
 
     @FindBy(xpath = "//input[@aria-label='Email address']")
-    private WebElement yourEmailField;
+    private static WebElement yourEmailField;
 
     @FindBy(xpath = "//input[@aria-label='Contact number ']")
-    private WebElement yourContactNumberField;
+    private static WebElement yourContactNumberField;
 
     @FindBy(xpath = "//input[@aria-label='Location ']")
-    private WebElement yourLocationField;
+    private static WebElement yourLocationField;
 
     @FindBy(xpath = "//p[contains(text(), 'I am over 16 years old')]")
     private WebElement overSixteenYearsCheckbox;
@@ -87,5 +90,19 @@ public class ShareYourStoryPage extends BasePage {
         return submitButton.isEnabled();
     }
 
+    public static class Form {
+        public void FillForm(HashMap<String, String> values) {
+            storyTextArea.sendKeys(values.get("text"));
+            yourNameField.sendKeys(values.get("name"));
+            yourContactNumberField.sendKeys(values.get("number"));
+            yourLocationField.sendKeys(values.get("location"));
+            yourEmailField.sendKeys(values.get("email"));
+        }
+    }
 
 }
+
+
+
+
+

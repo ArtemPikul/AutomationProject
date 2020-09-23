@@ -7,7 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverSingleton {
 
-    private static final String BROWSER_NAME = "firefox";
+    private static final String BROWSER_NAME = "chrome";
 
     private static WebDriver driver;
 

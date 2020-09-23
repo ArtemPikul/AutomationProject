@@ -2,6 +2,9 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.ShareYourStoryPage;
+
+import java.util.HashMap;
 
 public class TaskTwoTests extends BaseTest {
 
@@ -12,18 +15,25 @@ public class TaskTwoTests extends BaseTest {
 
     private static final String PAGE_URL_FOR_ASSERT = "https://www.bbc.com/news/10725415";
 
+
     @Test
     public void checkThatUserCannotSubmitQuestionIfOneOfTheFieldsHasInvalidData() {
-        String currentURL = homePage.clickOnHeaderNewsLink()
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("text", STORY_TEXT);
+        map.put("name", NAME);
+        map.put("number", CONTACT_NUMBER);
+        map.put("location", LOCATION);
+        map.put("email", "invalid email");
+
+        homePage.clickOnHeaderNewsLink()
                 .clickOnCoronavirusTabLink()
                 .clickOnYourCoronavirusStoriesLink()
-                .clickOnShareWithBBCLink()
-                .fillInStoryTextArea(STORY_TEXT)
-                .fillInNameField(NAME)
-                .fillInEmailField("invalid email")
-                .fillInContactNumberField(CONTACT_NUMBER)
-                .fillInLocationField(LOCATION)
-                .acceptOverSixteenYearsOldCondition()
+                .clickOnShareWithBBCLink();
+
+        ShareYourStoryPage.Form submitForm = new ShareYourStoryPage.Form();
+        submitForm.FillForm(map);
+
+        String currentURL = shareYourStoryPage.acceptOverSixteenYearsOldCondition()
                 .acceptTermsOfService()
                 .clickSubmitButton()
                 .getCurrentPageURL();
