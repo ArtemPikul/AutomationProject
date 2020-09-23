@@ -2,21 +2,21 @@ package tests;
 
 import driver.DriverSingleton;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
-import pages.*;
-
-import java.util.HashMap;
+import pages.HomePage;
+import pages.NewsPage;
+import pages.SearchResultsPage;
+import pages.ShareYourStoryPage;
 
 public abstract class BaseTest {
 
     protected WebDriver driver;
 
-    protected HomePage homePage;
+    protected static HomePage homePage;
     protected NewsPage newsPage;
-    protected ShareYourStoryPage shareYourStoryPage;
+    protected static ShareYourStoryPage shareYourStoryPage;
 
     private static final String BBC_URL = "https://www.bbc.com";
 

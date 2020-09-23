@@ -1,5 +1,6 @@
 package tests;
 
+import BLL.LogicLayer;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.ShareYourStoryPage;
@@ -18,28 +19,21 @@ public class TaskTwoTests extends BaseTest {
 
     @Test
     public void checkThatUserCannotSubmitQuestionIfOneOfTheFieldsHasInvalidData() {
-        HashMap<String, String> map = new HashMap<String, String>();
+        HashMap<String, String> map = new HashMap<>();
         map.put("text", STORY_TEXT);
         map.put("name", NAME);
         map.put("number", CONTACT_NUMBER);
         map.put("location", LOCATION);
         map.put("email", "invalid email");
 
-        homePage.clickOnHeaderNewsLink()
-                .clickOnCoronavirusTabLink()
-                .clickOnYourCoronavirusStoriesLink()
-                .clickOnShareWithBBCLink();
-
-        ShareYourStoryPage.Form submitForm = new ShareYourStoryPage.Form();
-        submitForm.FillForm(map);
-
-        String currentURL = shareYourStoryPage.acceptOverSixteenYearsOldCondition()
-                .acceptTermsOfService()
-                .clickSubmitButton()
-                .getCurrentPageURL();
+        LogicLayer.navigateToShareYourStoryPage();
+        LogicLayer.fillShareYourStoryForm(map);
+        LogicLayer.acceptOverSixteenYearsOld();
+        LogicLayer.acceptTermsOfService();
+        String currentURL = LogicLayer.clickSubmitAndGetURL();
 
         Assert.assertEquals(currentURL, PAGE_URL_FOR_ASSERT);
-        Assert.assertTrue(shareYourStoryPage.getSubmitButtonState());
+        Assert.assertTrue(LogicLayer.getSubmitButtonState());
     }
 
     @Test
