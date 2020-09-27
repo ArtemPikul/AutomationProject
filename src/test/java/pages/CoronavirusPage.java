@@ -32,10 +32,5 @@ public class CoronavirusPage extends BasePage {
         return new ShareYourStoryPage(driver);
     }
 
-    public CoronavirusPage waitForPageReadyState(long timeout) {
-        new WebDriverWait(driver, timeout).until(
-                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
-        return this;
-    }
 
 }

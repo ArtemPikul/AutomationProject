@@ -1,12 +1,10 @@
 package pages;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class ShareYourStoryPage extends BasePage {
 
@@ -54,23 +52,17 @@ public class ShareYourStoryPage extends BasePage {
         return this;
     }
 
-    public ShareYourStoryPage waitForPageReadyState(long timeout) {
-        new WebDriverWait(driver, timeout).until(
-                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
-        return this;
-    }
-
     public boolean getSubmitButtonState() {
         return submitButton.isEnabled();
     }
 
     public static class Form {
-        public void FillForm(HashMap<String, String> values) {
-            storyTextArea.sendKeys(values.get("text"));
-            yourNameField.sendKeys(values.get("name"));
-            yourContactNumberField.sendKeys(values.get("number"));
-            yourLocationField.sendKeys(values.get("location"));
-            yourEmailField.sendKeys(values.get("email"));
+        public void FillForm(Map<String, String> data) {
+            storyTextArea.sendKeys(data.get("text"));
+            yourNameField.sendKeys(data.get("name"));
+            yourContactNumberField.sendKeys(data.get("number"));
+            yourLocationField.sendKeys(data.get("location"));
+            yourEmailField.sendKeys(data.get("email"));
         }
     }
 

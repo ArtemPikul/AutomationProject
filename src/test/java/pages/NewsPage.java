@@ -45,11 +45,6 @@ public class NewsPage extends BasePage {
         return secondaryArticleHeadlinesList;
     }
 
-    public NewsPage waitForPageReadyState(long timeout) {
-        new WebDriverWait(driver, timeout).until(
-                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
-        return this;
-    }
 
     public NewsPage waitForElementVisibility(long timeout, WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, timeout);

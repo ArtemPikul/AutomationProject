@@ -1,10 +1,11 @@
 package tests;
 
-import BLL.LogicLayer;
+import logiclayer.LogicLayer;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class TaskTwoTests extends BaseTest {
 
@@ -18,56 +19,62 @@ public class TaskTwoTests extends BaseTest {
 
     @Test
     public void checkThatUserCannotSubmitQuestionIfOneOfTheFieldsHasInvalidData() {
-        HashMap<String, String> map = new HashMap<>();
-        map.put("text", STORY_TEXT);
-        map.put("name", NAME);
-        map.put("number", CONTACT_NUMBER);
-        map.put("location", LOCATION);
-        map.put("email", "invalid email");
+        Map<String, String> data = new HashMap<>();
+        data.put("text", STORY_TEXT);
+        data.put("name", NAME);
+        data.put("number", CONTACT_NUMBER);
+        data.put("location", LOCATION);
+        data.put("email", "invalid email");
 
-        LogicLayer.navigateToShareYourStoryPage();
-        LogicLayer.fillShareYourStoryForm(map);
-        LogicLayer.acceptOverSixteenYearsOld();
-        LogicLayer.acceptTermsOfService();
-        String currentURL = LogicLayer.clickSubmitAndGetURL();
+        String currentURL = new LogicLayer().navigateToShareYourStoryPage()
+                .fillShareYourStoryForm(data)
+                .acceptOverSixteenYearsOld()
+                .acceptTermsOfService()
+                .clickSubmitAndGetURL();
+
+        boolean submitButtonState = new LogicLayer().getSubmitButtonState();
 
         Assert.assertEquals(currentURL, PAGE_URL_FOR_ASSERT);
-        Assert.assertTrue(LogicLayer.getSubmitButtonState());
+        Assert.assertTrue(submitButtonState);
     }
 
     @Test
     public void checkThatUserCannotSubmitQuestionIfUnderSixteenIsNotChecked() {
-        HashMap<String, String> map = new HashMap<>();
-        map.put("text", STORY_TEXT);
-        map.put("name", NAME);
-        map.put("number", CONTACT_NUMBER);
-        map.put("location", LOCATION);
-        map.put("email", "pikul.a@outlook.com");
+        Map<String, String> data = new HashMap<>();
+        data.put("text", STORY_TEXT);
+        data.put("name", NAME);
+        data.put("number", CONTACT_NUMBER);
+        data.put("location", LOCATION);
+        data.put("email", "pikul.a@outlook.com");
 
-        LogicLayer.navigateToShareYourStoryPage();
-        LogicLayer.fillShareYourStoryForm(map);
-        LogicLayer.acceptTermsOfService();
-        String currentURL = LogicLayer.clickSubmitAndGetURL();
+        String currentURL = new LogicLayer().navigateToShareYourStoryPage()
+                .fillShareYourStoryForm(data)
+                .acceptTermsOfService()
+                .clickSubmitAndGetURL();
+
+        boolean submitButtonState = new LogicLayer().getSubmitButtonState();
 
         Assert.assertEquals(currentURL, PAGE_URL_FOR_ASSERT);
-        Assert.assertTrue(LogicLayer.getSubmitButtonState());
+        Assert.assertTrue(submitButtonState);
     }
 
     @Test
     public void checkThatUserCannotSubmitQuestionIfTermsOfServiceIsNotChecked() {
-        HashMap<String, String> map = new HashMap<>();
-        map.put("text", STORY_TEXT);
-        map.put("name", NAME);
-        map.put("number", CONTACT_NUMBER);
-        map.put("location", LOCATION);
-        map.put("email", "pikul.a@outlook.com");
+        Map<String, String> data = new HashMap<>();
+        data.put("text", STORY_TEXT);
+        data.put("name", NAME);
+        data.put("number", CONTACT_NUMBER);
+        data.put("location", LOCATION);
+        data.put("email", "pikul.a@outlook.com");
 
-        LogicLayer.navigateToShareYourStoryPage();
-        LogicLayer.fillShareYourStoryForm(map);
-        LogicLayer.acceptOverSixteenYearsOld();
-        String currentURL = LogicLayer.clickSubmitAndGetURL();
+        String currentURL = new LogicLayer().navigateToShareYourStoryPage()
+                .fillShareYourStoryForm(data)
+                .acceptOverSixteenYearsOld()
+                .clickSubmitAndGetURL();
+
+        boolean submitButtonState = new LogicLayer().getSubmitButtonState();
 
         Assert.assertEquals(currentURL, PAGE_URL_FOR_ASSERT);
-        Assert.assertTrue(LogicLayer.getSubmitButtonState());
+        Assert.assertTrue(submitButtonState);
     }
 }

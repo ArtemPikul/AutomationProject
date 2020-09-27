@@ -14,9 +14,9 @@ public abstract class BaseTest {
 
     protected WebDriver driver;
 
-    protected static HomePage homePage;
+    protected HomePage homePage;
     protected NewsPage newsPage;
-    protected static ShareYourStoryPage shareYourStoryPage;
+    protected ShareYourStoryPage shareYourStoryPage;
 
     private static final String BBC_URL = "https://www.bbc.com";
 
