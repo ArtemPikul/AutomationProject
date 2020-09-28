@@ -1,5 +1,6 @@
 package tests;
 
+import logiclayer.LogicLayer;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -17,34 +18,43 @@ public class TaskOneTests extends BaseTest {
 
 
     @Test
-    public void firstTestTask() {
-        getHomePage().clickOnHeaderNewsLink();
-        Assert.assertEquals(getNewsPage().getExpectedArticleHeadlineText(), EXPECTED_ARTICLE_HEADLINE);
+    public void checkThatExpectedArticleHeadlineIsMatch() {
+
+        LogicLayer logicLayer = new LogicLayer();
+        logicLayer.navigateToNewsPage();
+
+        Assert.assertEquals(logicLayer.getExpectedArticleHeadlineText(), EXPECTED_ARTICLE_HEADLINE);
     }
 
     @Test
-    public void secondTestTask() {
-        getHomePage().clickOnHeaderNewsLink();
+    public void checkThatSecondaryArticleHeadlinesIsMatch() {
+
+        LogicLayer logicLayer = new LogicLayer();
+        logicLayer.navigateToNewsPage();
+
         boolean result = true;
         for (int i = 0; i < 4; i++) {
-            String actualTitle = getNewsPage().getSecondaryArticleHeadlinesLIst().get(i).getText();
+            String actualTitle = logicLayer.getSecondaryArticleHeadlinesList().get(i).getText();
             if (EXPECTED_SECONDARY_ARTICLES_TITLES[i].equals(actualTitle)) {
                 result = false;
-                System.out.println(EXPECTED_SECONDARY_ARTICLES_TITLES[i]);
-                System.out.println(actualTitle);
                 break;
             }
         }
+
         Assert.assertTrue(result);
     }
 
     @Test
-    public void thirdTestTask() {
-        getHomePage().clickOnHeaderNewsLink();
-        String searchQuery = getNewsPage().getHeadlineArticleCategoryText();
-        getHomePage().searchByKeyword(searchQuery);
-        String firstFoundArticleName = getSearchResultsPage().getFirstSearchResult();
+    public void checkThatArticleCategoryIsMatch() {
+        LogicLayer logicLayer = new LogicLayer();
+        logicLayer.navigateToNewsPage();
+
+        String searchQuery = logicLayer.getHeadlineArticleCategoryText();
+        logicLayer.searchByKeyword(searchQuery);
+        String firstFoundArticleName = logicLayer.getFirstSearchResult();
+
         boolean found = Arrays.asList(firstFoundArticleName.split(" ")).contains(searchQuery);
+
         Assert.assertTrue(found);
     }
 }

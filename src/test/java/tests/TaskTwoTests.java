@@ -26,16 +26,16 @@ public class TaskTwoTests extends BaseTest {
         data.put("location", LOCATION);
         data.put("email", "invalid email");
 
-        String currentURL = new LogicLayer().navigateToShareYourStoryPage()
+        LogicLayer logicLayer = new LogicLayer();
+
+        String currentURL = logicLayer.navigateToShareYourStoryPage()
                 .fillShareYourStoryForm(data)
                 .acceptOverSixteenYearsOld()
                 .acceptTermsOfService()
                 .clickSubmitAndGetURL();
 
-        boolean submitButtonState = new LogicLayer().getSubmitButtonState();
-
         Assert.assertEquals(currentURL, PAGE_URL_FOR_ASSERT);
-        Assert.assertTrue(submitButtonState);
+        Assert.assertTrue(logicLayer.getSubmitButtonState());
     }
 
     @Test
@@ -47,15 +47,16 @@ public class TaskTwoTests extends BaseTest {
         data.put("location", LOCATION);
         data.put("email", "pikul.a@outlook.com");
 
-        String currentURL = new LogicLayer().navigateToShareYourStoryPage()
+        LogicLayer logicLayer = new LogicLayer();
+
+        String currentURL = logicLayer.navigateToShareYourStoryPage()
                 .fillShareYourStoryForm(data)
                 .acceptTermsOfService()
                 .clickSubmitAndGetURL();
 
-        boolean submitButtonState = new LogicLayer().getSubmitButtonState();
 
         Assert.assertEquals(currentURL, PAGE_URL_FOR_ASSERT);
-        Assert.assertTrue(submitButtonState);
+        Assert.assertTrue(logicLayer.getSubmitButtonState());
     }
 
     @Test
@@ -67,14 +68,14 @@ public class TaskTwoTests extends BaseTest {
         data.put("location", LOCATION);
         data.put("email", "pikul.a@outlook.com");
 
-        String currentURL = new LogicLayer().navigateToShareYourStoryPage()
+        LogicLayer logicLayer = new LogicLayer();
+
+        String currentURL = logicLayer.navigateToShareYourStoryPage()
                 .fillShareYourStoryForm(data)
                 .acceptOverSixteenYearsOld()
                 .clickSubmitAndGetURL();
 
-        boolean submitButtonState = new LogicLayer().getSubmitButtonState();
-
         Assert.assertEquals(currentURL, PAGE_URL_FOR_ASSERT);
-        Assert.assertTrue(submitButtonState);
+        Assert.assertTrue(logicLayer.getSubmitButtonState());
     }
 }
