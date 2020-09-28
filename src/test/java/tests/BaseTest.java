@@ -8,15 +8,10 @@ import org.testng.annotations.BeforeTest;
 import pages.HomePage;
 import pages.NewsPage;
 import pages.SearchResultsPage;
-import pages.ShareYourStoryPage;
 
 public abstract class BaseTest {
 
     protected WebDriver driver;
-
-    protected HomePage homePage;
-    protected NewsPage newsPage;
-    protected ShareYourStoryPage shareYourStoryPage;
 
     private static final String BBC_URL = "https://www.bbc.com";
 
@@ -28,9 +23,6 @@ public abstract class BaseTest {
     @BeforeMethod
     public void testsSetUp() {
         driver.get(BBC_URL);
-        this.homePage = new HomePage(driver);
-        this.newsPage = new NewsPage(driver);
-        this.shareYourStoryPage = new ShareYourStoryPage(driver);
     }
 
     @AfterTest

@@ -9,7 +9,6 @@ import org.openqa.selenium.opera.OperaDriver;
 
 public class DriverSingleton {
 
-    private static final String BROWSER_NAME = "chrome";
 
     private static WebDriver driver;
 
@@ -17,15 +16,10 @@ public class DriverSingleton {
 
     public static WebDriver getDriver(){
         if (null == driver){
-            switch (BROWSER_NAME){
+            switch (System.getProperty("browser")){
                 case "firefox": {
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
-                    break;
-                }
-                case "chrome": {
-                    WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
                     break;
                 }
                 case "opera": {
@@ -36,6 +30,11 @@ public class DriverSingleton {
                 case "edge": {
                     WebDriverManager.edgedriver().setup();
                     driver = new EdgeDriver();
+                    break;
+                }
+                default: {
+                    WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver();
                     break;
                 }
             }

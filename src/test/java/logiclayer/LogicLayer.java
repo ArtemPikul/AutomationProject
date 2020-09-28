@@ -1,6 +1,5 @@
 package logiclayer;
 
-import driver.DriverSingleton;
 import pages.HomePage;
 import pages.ShareYourStoryPage;
 
@@ -8,8 +7,11 @@ import java.util.Map;
 
 public class LogicLayer {
 
+    private final HomePage homePage = PageFactoryLayer.getHomePage();
+    private final ShareYourStoryPage shareYourStoryPage = PageFactoryLayer.getShareYourStoryPage();
+
     public LogicLayer navigateToShareYourStoryPage() {
-        new HomePage(DriverSingleton.getDriver()).clickOnHeaderNewsLink()
+        homePage.clickOnHeaderNewsLink()
                 .clickOnCoronavirusTabLink()
                 .clickOnYourCoronavirusStoriesLink()
                 .clickOnShareWithBBCLink();
@@ -23,20 +25,20 @@ public class LogicLayer {
     }
 
     public LogicLayer acceptOverSixteenYearsOld() {
-        new ShareYourStoryPage(DriverSingleton.getDriver()).acceptOverSixteenYearsOldCondition();
+        shareYourStoryPage.acceptOverSixteenYearsOldCondition();
         return this;
     }
 
     public LogicLayer acceptTermsOfService() {
-        new ShareYourStoryPage(DriverSingleton.getDriver()).acceptTermsOfService();
+        shareYourStoryPage.acceptTermsOfService();
         return this;
     }
 
     public String clickSubmitAndGetURL() {
-        return new ShareYourStoryPage(DriverSingleton.getDriver()).clickSubmitButton().getCurrentPageURL();
+        return shareYourStoryPage.clickSubmitButton().getCurrentPageURL();
     }
 
     public boolean getSubmitButtonState() {
-        return new ShareYourStoryPage(DriverSingleton.getDriver()).getSubmitButtonState();
+        return shareYourStoryPage.getSubmitButtonState();
     }
 }
