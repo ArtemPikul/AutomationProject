@@ -1,38 +1,31 @@
-package pages;
+package com.cucumber.junit.pages;
 
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
+import com.cucumber.junit.driver.DriverManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
 
+    private static final String BBC_URL = "https://www.bbc.com";
+
     @FindBy(xpath = "//div[@id='orb-nav-links']//a[contains(text(), 'News')]")
     private WebElement newsLink;
-
-    @FindBy(xpath = "//input[@id='orb-search-q']")
-    private WebElement searchField;
 
     @FindBy(xpath = "//button[contains(text(), 'Maybe later')]")
     private WebElement signInPopupMaybeLater;
 
-    public HomePage(WebDriver driver) {
-        super(driver);
+    public void openBBCWebsite() {
+        DriverManager.getDriver().get(BBC_URL);
     }
 
-    public NewsPage clickOnHeaderNewsLink() {
+    public void clickOnHeaderNewsLink() {
         newsLink.click();
         waitForPageReadyState(WAIT_TIMEOUT);
         try {
             signInPopupMaybeLater.click();
         } finally {
-            return new NewsPage(driver);
+
         }
-
-    }
-
-    public void searchByKeyword(String keyword) {
-        searchField.sendKeys(keyword, Keys.ENTER);
     }
 
 }

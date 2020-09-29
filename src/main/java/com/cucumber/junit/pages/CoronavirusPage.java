@@ -1,6 +1,5 @@
-package pages;
+package com.cucumber.junit.pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -14,20 +13,14 @@ public class CoronavirusPage extends BasePage {
     @FindBy(xpath = "//a[@href='/news/10725415']")
     private WebElement shareWithBBCLink;
 
-    public CoronavirusPage(WebDriver driver) {
-        super(driver);
-    }
-
-    public CoronavirusPage clickOnYourCoronavirusStoriesLink() {
+    public void clickOnYourCoronavirusStoriesLink() {
         yourCoronavirusStoriesLink.get(0).click();
         waitForPageReadyState(WAIT_TIMEOUT);
-        return this;
     }
 
-    public ShareYourStoryPage clickOnShareWithBBCLink() {
+    public void clickOnShareWithBBCLink() {
         shareWithBBCLink.click();
         waitForPageReadyState(WAIT_TIMEOUT);
-        return new ShareYourStoryPage(driver);
     }
 
 

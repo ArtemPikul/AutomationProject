@@ -1,4 +1,4 @@
-package driver;
+package com.cucumber.junit.driver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -7,16 +7,18 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
 
-public class DriverSingleton {
-
+public class DriverManager {
 
     private static WebDriver driver;
+    private static String driverType = "";
 
-    private DriverSingleton(){}
+    private DriverManager() {
+    }
 
-    public static WebDriver getDriver(){
-        if (null == driver){
-            switch (System.getProperty("browser")){
+    public static WebDriver getDriver(String driverName) {
+        driverType = driverName;
+        if (null == driver) {
+            switch (driverName) {
                 case "firefox": {
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
@@ -43,4 +45,14 @@ public class DriverSingleton {
         return driver;
     }
 
+    public static WebDriver getDriver() {
+        return driver == null ? getDriver(driverType) : driver;
+    }
+
+    public static void quitDriver() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
+    }
 }
