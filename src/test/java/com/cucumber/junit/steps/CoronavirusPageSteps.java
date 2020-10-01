@@ -1,11 +1,11 @@
 package com.cucumber.junit.steps;
 
-import com.cucumber.junit.pages.CoronavirusPage;
 import io.cucumber.java.en.And;
+
+import static com.cucumber.junit.pages.PageProvider.coronavirusPage;
 
 public class CoronavirusPageSteps {
 
-    private final CoronavirusPage coronavirusPage = new CoronavirusPage();
 
     @And("the user goes to \"Share your story\" page")
     public void goToShareYourStoryPage() {

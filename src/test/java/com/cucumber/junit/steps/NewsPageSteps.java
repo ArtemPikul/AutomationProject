@@ -1,14 +1,12 @@
 package com.cucumber.junit.steps;
 
-import com.cucumber.junit.pages.NewsPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import static com.cucumber.junit.pages.PageProvider.newsPage;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class NewsPageSteps {
-
-    private final NewsPage newsPage = new NewsPage();
 
     @And("the user goes to \"Coronavirus\" tab on \"News\" page")
     public void goToCoronavirusPage() {

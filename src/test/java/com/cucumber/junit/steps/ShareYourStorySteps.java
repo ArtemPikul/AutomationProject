@@ -1,14 +1,14 @@
 package com.cucumber.junit.steps;
 
-import com.cucumber.junit.pages.ShareYourStoryPage;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import static com.cucumber.junit.pages.PageProvider.shareYourStoryPage;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ShareYourStorySteps {
 
-    private final ShareYourStoryPage shareYourStoryPage = new ShareYourStoryPage();
+
 
     @When("the user enters the {string} in the story text form")
     public void fillStoryTextForm(String text) {

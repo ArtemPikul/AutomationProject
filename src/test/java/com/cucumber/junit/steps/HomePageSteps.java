@@ -1,12 +1,11 @@
 package com.cucumber.junit.steps;
 
-import com.cucumber.junit.pages.HomePage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 
-public class HomePageSteps {
+import static com.cucumber.junit.pages.PageProvider.homePage;
 
-    private final HomePage homePage = new HomePage();
+public class HomePageSteps {
 
     @Given("the user opens BBC website")
     public void openBBCWebsite() {

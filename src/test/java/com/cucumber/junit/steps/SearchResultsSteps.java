@@ -1,18 +1,16 @@
 package com.cucumber.junit.steps;
 
-import com.cucumber.junit.pages.NewsPage;
-import com.cucumber.junit.pages.SearchResultsPage;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import java.util.Arrays;
 
+import static com.cucumber.junit.pages.PageProvider.newsPage;
+import static com.cucumber.junit.pages.PageProvider.searchResultsPage;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SearchResultsSteps {
 
-    private final SearchResultsPage searchResultsPage = new SearchResultsPage();
-    private final NewsPage newsPage = new NewsPage();
     private String searchQuery = "";
 
     @When("the user searches for a category of headline article using search bar")
